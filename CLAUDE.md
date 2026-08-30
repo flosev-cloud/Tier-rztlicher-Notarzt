@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-**Tier-rztlicher-Notarzt** ("Tierärztlicher Notarzt" — German for *veterinary emergency doctor/service*) is currently a **placeholder/reference repository**, not a working codebase. It contains no source code, build system, tests, or CI configuration.
+**Tier-rztlicher-Notarzt** ("Tierärztlicher Notarzt" — German for *veterinary emergency doctor/service*) belongs to **Mobiler tierärztlicher Notarzt Rhein-Erft GmbH**, a mobile veterinary emergency service in the Rhein-Erft district, Germany (per the GitHub repository description). It is currently a **placeholder/reference repository**, not a working codebase: it contains no source code, build system, tests, or CI configuration.
 
 The actual application referenced by this repository lives externally on the Vibecode platform:
 
