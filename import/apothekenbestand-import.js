@@ -60,6 +60,11 @@
         console.error('❌ Vorhandene App-Daten sind kein gültiges JSON – Import abgebrochen, nichts verändert.', e);
         return;
     }
+    const istObjekt = v => v !== null && typeof v === 'object' && !Array.isArray(v);
+    if (!istObjekt(appData) || (appData.apotheke !== undefined && !istObjekt(appData.apotheke))) {
+        console.error('❌ Vorhandene App-Daten haben ein unerwartetes Format – Import abgebrochen, nichts verändert.');
+        return;
+    }
 
     // --- Backup ------------------------------------------------------------
     if (rohdaten !== null) {

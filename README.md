@@ -11,7 +11,11 @@ https://www.vibecodeapp.com/s/cmkeon7en000807hqvmsj8cfp
 3. Rückfragen bestätigen, Seite neu laden, Tab „Apotheke“ öffnen
 
 Vor dem Schreiben wird ein Backup unter `severins_tierheim_v1_backup_<Zeitstempel>`
-angelegt. Wiederherstellen in der Konsole:
-`localStorage.setItem('severins_tierheim_v1', localStorage.getItem('<Backup-Schlüssel>'))`
+angelegt. Wiederherstellen in der Konsole (`<Backup-Schlüssel>` ersetzen):
+
+```js
+const b = localStorage.getItem('<Backup-Schlüssel>');
+if (b === null) console.error('Backup nicht gefunden'); else localStorage.setItem('severins_tierheim_v1', b);
+```
 
 Hinweis: Der aktuelle Export enthält 10 von 50 Positionen (laut `import_metadata`).
