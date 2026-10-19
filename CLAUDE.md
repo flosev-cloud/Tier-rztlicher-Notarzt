@@ -27,6 +27,35 @@ There are no other files, directories, dependencies, or configuration.
 - The project owner works in a German veterinary context (animal shelter / veterinary emergency services). Repository names, file names, and any future content are likely to be in **German** — respond and document in German when the user writes in German.
 - Domain vocabulary to expect: Notarzt (emergency doctor), Tierheim (animal shelter), Behandlung (treatment), Impfung (vaccination), Quarantäne (quarantine).
 
+## App data model (Vibecode app, JSON export)
+
+The Vibecode app manages its data as a single JSON document. Top-level shape (schema only — exports contain real practice data and must not be committed to this repository):
+
+```jsonc
+{
+  "appVersion": "1.0",
+  "lastModified": "<ISO timestamp>",
+  "tiere": [ /* animal master records */ ],
+  "impfungen": [
+    // vaccinations, linked to animals via tierId; fields:
+    // tierId (number), impfstoff (string),
+    // datum / naechsteFaelligkeitDatum (ISO date strings),
+    // faelligPill (boolean, due-flag for the UI)
+  ],
+  "behandlungen": [ /* treatment records */ ],
+  "rechnungen": [ /* invoices */ ],
+  "apotheke": [ /* in-house pharmacy stock (Hausapotheke) */ ],
+  "btmBuch": [ /* controlled-substances ledger (BTM-Buch, legally required records) */ ]
+}
+```
+
+Key points for assistants working with exports of this data:
+
+- Records reference animals by numeric `tierId`; `tiere` is the master list.
+- German field names throughout; dates are ISO `YYYY-MM-DD` strings, `lastModified` is a full ISO timestamp.
+- `btmBuch` holds legally mandated controlled-substance records (Betäubungsmittelgesetz) — treat it as sensitive and never fabricate or delete entries.
+- Exports contain personal and medical data: analyze them locally only; never commit export files or real record contents to this repository.
+
 ## Development workflow
 
 There is no build, lint, or test tooling in this repository — nothing to install or run.
